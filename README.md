@@ -34,10 +34,6 @@ This is always GET at the moment.
 
 This isn't being copied at the moment.
 
-### Request Query Parameters
-
-These arn't being copied at the moment.
-
 ### Restricted Headers
 
 When performing a proxy for the request:

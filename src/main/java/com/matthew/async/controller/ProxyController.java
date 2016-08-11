@@ -18,9 +18,14 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.matthew.async.dto.RequestDetails;
 import com.matthew.async.repository.ProxyRepository;
 
 @Controller
@@ -31,8 +36,11 @@ public class ProxyController {
     @Autowired private ProxyRepository repository;
 
     @RequestMapping("/**")
-    public @ResponseBody CompletionStage<ResponseEntity<String>> handle(HttpServletRequest request) {
-        return repository.get(request)
+    public @ResponseBody CompletionStage<ResponseEntity<String>> handle(@RequestHeader MultiValueMap<String, String> headers, @RequestParam MultiValueMap<String, String> queryParameters, @RequestBody(required=false) String body, HttpServletRequest request) {
+        String path = request.getRequestURI();
+        RequestDetails details = new RequestDetails(headers, path, queryParameters, body);
+
+        return repository.get(details)
             .thenApply(this::convert);
     }
 
