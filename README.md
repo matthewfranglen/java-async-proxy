@@ -26,7 +26,15 @@ dropped. This error manifests itself in curl with the following error:
 Remaining Tasks
 ---------------
 
-### HTTP Method and Request Body
+### HTTP Method
+
+This is always GET at the moment.
+
+### Request Body
+
+This isn't being copied at the moment.
+
+### Request Query Parameters
 
 These arn't being copied at the moment.
 
