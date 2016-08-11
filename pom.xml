@@ -25,10 +25,15 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.glassfish.jersey.core</groupId>
-            <artifactId>jersey-client</artifactId>
+            <groupId>org.glassfish.jersey.ext.rx</groupId>
+            <artifactId>jersey-rx-client-java8</artifactId>
             <version>${jax-rs.version}</version>
         </dependency>
+        <!-- <dependency>
+            <groupId>org.glassfish.jersey.ext.rx</groupId>
+            <artifactId>jersey-rx-client-jsr166e</artifactId>
+            <version>${jax-rs.version}</version>
+        </dependency> -->
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
