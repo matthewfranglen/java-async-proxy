@@ -36,7 +36,12 @@ public class ProxyController {
     @Autowired private ProxyRepository repository;
 
     @RequestMapping("/**")
-    public @ResponseBody CompletionStage<ResponseEntity<String>> handle(@RequestHeader MultiValueMap<String, String> headers, @RequestParam MultiValueMap<String, String> queryParameters, @RequestBody(required=false) String body, HttpServletRequest request) {
+    public @ResponseBody CompletionStage<ResponseEntity<String>> handle(
+            @RequestHeader MultiValueMap<String, String> headers,
+            @RequestParam MultiValueMap<String, String> queryParameters,
+            @RequestBody(required=false) String body,
+            HttpServletRequest request
+    ) {
         String path = request.getRequestURI();
         RequestDetails details = new RequestDetails(headers, path, queryParameters, body);
 

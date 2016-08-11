@@ -10,7 +10,10 @@ public class RequestDetails {
     private final String body;
 
     public RequestDetails(
-        MultiValueMap<String, String> headers, String path, MultiValueMap<String, String> queryParameters, String body
+            MultiValueMap<String, String> headers,
+            String path,
+            MultiValueMap<String, String> queryParameters,
+            String body
     ) {
         this.headers = headers;
         this.path = path;
