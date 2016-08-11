@@ -38,7 +38,6 @@ public class ProxyRepository {
     public CompletionStage<Response> get(HttpServletRequest request) {
         RxInvocationBuilder<RxCompletionStageInvoker> builder = target.path(request.getRequestURI()).request();
         builder = setHeaders(request, builder);
-        // TODO: Method and Body
         return builder.rx().get();
     }
 

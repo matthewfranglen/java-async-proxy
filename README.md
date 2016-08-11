@@ -22,3 +22,24 @@ dropped. This error manifests itself in curl with the following error:
 * Illegal or missing hexadecimal sequence in chunked-encoding
 * Closing connection 0
 ```
+
+Remaining Tasks
+---------------
+
+### HTTP Method and Request Body
+
+These arn't being copied at the moment.
+
+### Restricted Headers
+
+When performing a proxy for the request:
+
+```
+curl http://localhost:8080/foo
+```
+
+The following message appears in the logs:
+
+```
+Attempt to send restricted header(s) while the [sun.net.http.allowRestrictedHeaders] system property not set. Header(s) will possibly be ignored.
+```
