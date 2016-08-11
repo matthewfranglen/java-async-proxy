@@ -9,6 +9,7 @@ import java.util.concurrent.CompletionStage;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 
@@ -18,7 +19,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.MultiValueMap;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,13 +35,14 @@ public class ProxyController {
 
     @Autowired private ProxyRepository repository;
 
-    @RequestMapping("{path}")
+    @RequestMapping("/**")
     public @ResponseBody CompletionStage<ResponseEntity<String>> handle(
             @RequestHeader MultiValueMap<String, String> headers,
-            @PathVariable String path,
             @RequestParam MultiValueMap<String, String> queryParameters,
-            @RequestBody(required=false) String body
+            @RequestBody(required=false) String body,
+            HttpServletRequest request
     ) {
+        String path = request.getRequestURI();
         RequestDetails details = new RequestDetails(headers, path, queryParameters, body);
 
         return repository.get(details)
